@@ -2,3 +2,4 @@ app.nw
 index.html
 package.json
 scripts/
+node_modules/

@@ -14,7 +14,7 @@ fs.readFileSync = function(fileName) {
 }
 
 test.should_Add_The_Task_Into_List = function () {
-	var task = {work:'read some book'};
+	var task = 'read some book';
 	var expectedResult = {remaining:[{work:'read some book',id:1}],completed:[],totalTaskGenerated:1};
 
 	lib.addTask(task);
@@ -24,8 +24,8 @@ test.should_Add_The_Task_Into_List = function () {
 
 test.should_not_add_the_task_when_the_same_task_exists = function () {
 	var errorMessage = {msg:'Tasks Already Exists'};
-	var task_1 = {work:'read some book'};
-	var task_2 = {work:'read some book'};
+	var task_1 = 'read some book';
+	var task_2 = 'read some book';
 
 	lib.addTask(task_1);
 	fs.existsSync = function() {return true;}
@@ -37,7 +37,7 @@ test.should_not_add_the_task_when_the_same_task_exists = function () {
 
 test.should_return_true_when_the_task_already_exists = function () {
 	var existingTasks = [{work:'read some book'}];
-	var task_2 = {work:'read some book'};
+	var task_2 = 'read some book';
 
 	var answer	= lib.exists(existingTasks,task_2);
 
@@ -47,7 +47,7 @@ test.should_return_true_when_the_task_already_exists = function () {
 
 test.should_return_false_when_the_task_not_exists = function () {
 	var existingTasks = [];
-	var task_2 = {work:'read some book'};
+	var task_2 = 'read some book';
 
 	var answer	= lib.exists(existingTasks,task_2);
 
@@ -55,8 +55,8 @@ test.should_return_false_when_the_task_not_exists = function () {
 }
 
 test.should_update_the_totalTaskGenerated_as_a_task_added_to_the_scheduler = function() {
-	var task_1 = {work:'read some book'};
-	var task_2 = {work:'play Cricket'};
+	var task_1 = 'read some book';
+	var task_2 = 'play Cricket';
 	lib.addTask(task_1);
 	lib.addTask(task_2);
 	var expectedResult = {remaining:[{work:'read some book',id:1},{work:'play Cricket',id:2}],completed:[],totalTaskGenerated:2};
@@ -75,8 +75,8 @@ test.should_return_the_right_index_of_task_when_id_provided = function() {
 }
  
 test.should_move_the_task_to_the_completed_stage = function() {
-	var task_1 = {work:'read some book'};
-	var task_2 = {work:'play Cricket'};
+	var task_1 = 'read some book';
+	var task_2 = 'play Cricket';
 	lib.addTask(task_1);
 	lib.addTask(task_2);
 	var expectedResult = {remaining:[{work:'play Cricket',id:2}],completed:[{work:'read some book',id:1}],totalTaskGenerated:2};

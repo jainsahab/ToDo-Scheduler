@@ -7,11 +7,11 @@ var getExistingTasks = function() {
 			: {completed:[],remaining:[],totalTaskGenerated:0}
 }
 
-lib.addTask = function(task) {
+lib.addTask = function(work) {
 	var existingTasks = getExistingTasks();
-	if(lib.exists(existingTasks.remaining,task))
+	if(lib.exists(existingTasks.remaining,work))
 		return {msg:'Tasks Already Exists'}
-
+	var task = {work:work};
 	task.id = ++existingTasks.totalTaskGenerated;
 	existingTasks.remaining.push(task);
 	fs.writeFileSync('tasks.json',JSON.stringify(existingTasks));
@@ -20,7 +20,7 @@ lib.addTask = function(task) {
 lib.exists = function (existingTasks, taskToAdd) {
 	var exists = false;
 	var checkIfExist = function(singleTask){
-		if(singleTask.work == taskToAdd.work)
+		if(singleTask.work == taskToAdd)
 			exists = true;
 	}
 	existingTasks.forEach(checkIfExist)
