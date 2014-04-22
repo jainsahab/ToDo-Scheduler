@@ -15,7 +15,7 @@ fs.readFileSync = function(fileName) {
 
 test.should_Add_The_Task_Into_List = function () {
 	var task = {work:'read some book'};
-	var expectedResult = {remaining:[{work:'read some book'}],completed:[]};
+	var expectedResult = {remaining:[{work:'read some book',id:1}],completed:[],totalTaskGenerated:1};
 
 	lib.addTask(task);
 
@@ -53,5 +53,36 @@ test.should_return_false_when_the_task_not_exists = function () {
 
 	assert.equal(answer,false);
 }
+
+test.should_update_the_totalTaskGenerated_as_a_task_added_to_the_scheduler = function() {
+	var task_1 = {work:'read some book'};
+	var task_2 = {work:'play Cricket'};
+	lib.addTask(task_1);
+	lib.addTask(task_2);
+	var expectedResult = {remaining:[{work:'read some book',id:1},{work:'play Cricket',id:2}],completed:[],totalTaskGenerated:2};
+	
+	assert.deepEqual(expectedResult,JSON.parse(writtenData));
+}
+
+test.should_return_the_right_index_of_task_when_id_provided = function() {
+	var tasks = [{work:'read some book',id:2},{work:'play Cricket',id:1}]
+	var idToSearch = 1;
+	var expectedIndex = 1;
+
+	var actualIndex = lib.getIndexOfElement(tasks,idToSearch);
+
+	assert.equal(actualIndex,expectedIndex);
+}
  
+test.should_move_the_task_to_the_completed_stage = function() {
+	var task_1 = {work:'read some book'};
+	var task_2 = {work:'play Cricket'};
+	lib.addTask(task_1);
+	lib.addTask(task_2);
+	var expectedResult = {remaining:[{work:'play Cricket',id:2}],completed:[{work:'read some book',id:1}],totalTaskGenerated:2};
+	
+	lib.moveToDone(1);
+
+	assert.deepEqual(expectedResult,JSON.parse(writtenData));
+}
 exports.test = test;
