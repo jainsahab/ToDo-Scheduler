@@ -1,0 +1,29 @@
+#adder {
+	/*width: 100%;*/
+	height: 200;
+	background-color: yellow;
+	border: 1px solid black;
+}
+
+#handler {
+	float: left;
+	width: 100%;
+}
+
+#remaining {
+	float: left;
+	height: 100%;
+	width: 50%;
+	/*display: inline-block;*/
+	background-color: #00FFFF;
+	/*border: 1px solid black;*/
+	}
+
+#done {
+	float: left;
+	height: 100%;
+	width: 50%;
+	/*display: inline-block;*/
+	background-color: #00FF32;	
+	/*border: 1px solid black;*/
+}

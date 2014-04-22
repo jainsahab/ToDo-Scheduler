@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start": "nodewebkit"
+  },
+  "name": "nw-dem",
+  "main": "index.html",
+  "window": {
+  	"position":"center",
+    "width": 1030,
+    "height": 800
+  }
+}
+
+
