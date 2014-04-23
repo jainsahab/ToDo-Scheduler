@@ -3,12 +3,37 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<script src="scripts/angular.min.js"></script>
+
+		<!-- my files -->
+		<script type="text/javascript" src="scripts/myone/toDoController.js"></script>
+		<script type="text/javascript" src="scripts/myone/ToDo-Lib.js"></script>
 	</head>
 	<body>
-		<div id="handler">
-			<div id="adder"></div>
-			<div id="remaining"></div>
-			<div id="done"></div>
+		<div id="handler" ng-controller="toDoCtrl">
+
+			<div id="adder">
+				 <form ng-submit="addTodo()">
+					<input type="text" ng-model="todoText"  placeholder="add new todo here">
+					<input type="submit" value="add">
+				</form>
+			 </div>
+
+			<div id="remaining">
+				<ol >
+					<li ng-repeat="todo in toDos">
+						{{todo.work}}
+					</li>
+				</ol>
+			</div>
+			<div id="done">
+				<ol >
+					<li ng-repeat="completedTask in completedTasks">
+						{{completedTask.work}}
+					</li>
+				</ol>
+			</div>
+
+
 		</div>
 	</body>
 </html>
