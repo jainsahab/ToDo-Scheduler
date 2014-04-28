@@ -18,19 +18,17 @@
 				</form>
 			 </div>
 
-			<div id="remaining">
-				<ol >
-					<li ng-repeat="todo in toDos">
+			<div id="remaining" >
+					<div ng-repeat="todo in toDos" class="task" draggable="true">
 						{{todo.work}}
-					</li>
-				</ol>
+						<p>{{$index}}</p>
+					</div>
 			</div>
+
 			<div id="done">
-				<ol >
-					<li ng-repeat="completedTask in completedTasks">
-						{{completedTask.work}}
-					</li>
-				</ol>
+				<div ng-repeat="completedTask in completedTasks" class="task">
+					{{completedTask.work}}
+				</div>
 			</div>
 
 
