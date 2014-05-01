@@ -1,18 +1,14 @@
 #adder {
 	/*width: 100%;*/
-	height: 200;
+	height: 30%;
 	background-color: yellow;
 	border: 1px solid black;
 }
 
-#handler {
-	float: left;
-	width: 100%;
-}
 
 #remaining {
 	float: left;
-	height: 100%;
+	height: 70%;
 	width: 50%;
 	background-color: #00FFFF;
 	overflow: scroll;
@@ -21,9 +17,11 @@
 
 #done {
 	float: left;
-	height: 100%;
+	display: inline-block;
+	height: 70%;
 	width: 50%;
 	background-color: #00FF32;	
+	overflow: scroll;
 }
 
 .task {
@@ -39,6 +37,17 @@
 	background-color: white;
 	border-radius: 10px;
 	border: 1px black solid;
+
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.work {
+	height: 65%;
+	padding: 5px;
+	word-wrap: break-word;
+	overflow: auto;
+	background-color: #FFFFCC;
+	border: 1px solid #FFCC00;
 }
 
 .button {
