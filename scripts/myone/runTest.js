@@ -1,6 +1,11 @@
 var runTest = function(testName){
 	console.log('running tests on',testName);
 	var test = require('./'+testName).test;
+	var setup;
+	if(test.setup){
+		setup = test.setup;
+		delete test['setup'];		
+	}
 	var members = Object.keys(test);
 	var failed = 0;
 	var isAFunction = function(field){
@@ -12,6 +17,8 @@ var runTest = function(testName){
 		console.log('--------');
 		console.log('-->',name);
 		try{
+			if(typeof setup == 'function')
+				setup();
 			member();
 		}catch(error){
 			failed++;

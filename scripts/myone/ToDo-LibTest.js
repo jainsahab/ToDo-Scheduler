@@ -9,8 +9,16 @@ fs.writeFileSync = function(fileName,data){
 	writtenData = data;
 }
 
-fs.readFileSync = function(fileName) {
+fs.readFileSync = function(fileName,encoding) {
 	return writtenData;
+}
+
+fs.existsSync = function() {
+	return false;
+}
+
+test.setup = function() {
+	writtenData = JSON.stringify({completed:[],remaining:[],totalTaskGenerated:0});
 }
 
 test.should_Add_The_Task_Into_List = function () {
@@ -82,6 +90,21 @@ test.should_move_the_task_to_the_completed_stage = function() {
 	var expectedResult = {remaining:[{work:'play Cricket',id:2}],completed:[{work:'read some book',id:1}],totalTaskGenerated:2};
 	
 	lib.moveToDone(1);
+
+	assert.deepEqual(expectedResult,JSON.parse(writtenData));
+}
+
+test.should_delete_the_task = function() {
+	var task_1 = 'read some book';
+	var task_2 = 'play Cricket';
+	lib.addTask(task_1);
+	lib.addTask(task_2);
+
+	fs.existsSync = function(fileName) {return true;}
+
+	var expectedResult = {remaining:[{work:'play Cricket',id:2}],completed:[],totalTaskGenerated:2};
+	
+	lib.deleteTask(1);
 
 	assert.deepEqual(expectedResult,JSON.parse(writtenData));
 }

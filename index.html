@@ -2,6 +2,7 @@
 <html ng-app>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+
 		<script src="scripts/angular.min.js"></script>
 
 		<!-- my files -->
@@ -21,11 +22,14 @@
 			<div id="remaining" >
 					<div ng-repeat="todo in toDos" class="task" draggable="true">
 						{{todo.work}}
-						<p>{{$index}}</p>
+						<div class="button">
+							<button ng-click="delete($index)">Delete</button>
+							<button ng-click="moveIt($index)">Move To Done</button>
+						</div>
 					</div>
 			</div>
 
-			<div id="done">
+			<div id="done" droppable="true">
 				<div ng-repeat="completedTask in completedTasks" class="task">
 					{{completedTask.work}}
 				</div>

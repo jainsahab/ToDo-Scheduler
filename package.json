@@ -2,7 +2,7 @@
   "scripts": {
     "start": "nodewebkit"
   },
-  "name": "nw-dem",
+  "name": "ToDo",
   "main": "index.html",
   "window": {
   	"position":"center",

@@ -1,3 +1,6 @@
 app.nw
 node_modules/
 tasks.json
+.DS_Store
+bower_components
+*.nw
