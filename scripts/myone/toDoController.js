@@ -18,7 +18,12 @@ function toDoCtrl ($scope) {
 	}
 
 	$scope.delete = function(index) {
-		lib.deleteTask($scope.toDos[index].id);
+		lib.deleteTaskFromRemaining($scope.toDos[index].id);
 		$scope.toDos.splice(index,1);
+	}
+
+	$scope.deleteCompleted = function(index) {
+		lib.deleteTaskFromCompleted($scope.completedTasks[index].id);
+		$scope.completedTasks.splice(index,1);
 	}
 }

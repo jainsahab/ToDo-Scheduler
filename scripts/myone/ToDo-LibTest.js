@@ -104,7 +104,21 @@ test.should_delete_the_task = function() {
 
 	var expectedResult = {remaining:[{work:'play Cricket',id:2}],completed:[],totalTaskGenerated:2};
 	
-	lib.deleteTask(1);
+	lib.deleteTaskFromRemaining(1);
+
+	assert.deepEqual(expectedResult,JSON.parse(writtenData));
+}
+
+test.should_delete_the_task_from_completed = function() {
+	var task_1 = 'read some book';
+	lib.addTask(task_1);
+	lib.moveToDone(1)
+
+	fs.existsSync = function(fileName) {return true;}
+
+	var expectedResult = {remaining:[],completed:[],totalTaskGenerated:1};
+	
+	lib.deleteTaskFromCompleted(1);
 
 	assert.deepEqual(expectedResult,JSON.parse(writtenData));
 }

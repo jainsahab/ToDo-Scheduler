@@ -47,10 +47,19 @@ lib.moveToDone = function(id) {
 	fs.writeFileSync('../tasks.json',JSON.stringify(existingTasks));
 }
 
-lib.deleteTask = function(id) {
+lib.deleteTaskFromRemaining = function(id) {
 	var existingTasks = getExistingTasks();
+
 	var indexOfTaskCompleted = lib.getIndexOfElement(existingTasks.remaining,id);
 	existingTasks.remaining.splice(indexOfTaskCompleted,1);
+	fs.writeFileSync('../tasks.json',JSON.stringify(existingTasks));	
+}
+
+lib.deleteTaskFromCompleted = function(id) {
+	var existingTasks = getExistingTasks();
+	
+	var indexOfTaskCompleted = lib.getIndexOfElement(existingTasks.completed,id);
+	existingTasks.completed.splice(indexOfTaskCompleted,1);
 	fs.writeFileSync('../tasks.json',JSON.stringify(existingTasks));	
 }
 	exports.fs = fs;

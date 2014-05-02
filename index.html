@@ -20,20 +20,25 @@
 			 </div>
 
 			<div id="remaining" >
-					<div ng-repeat="todo in toDos" class="task" draggable="true">
+					<div ng-repeat="todo in toDos" class="task">
 						<div class="work">
 							{{todo.work}}
 						</div>
 						<div class="button">
-							<button ng-click="delete($index)">Delete</button>
-							<button ng-click="moveIt($index)">Move To Done</button>
+							<button class="myButton" ng-click="delete($index)">Delete</button>
+							<button class="myButton" ng-click="moveIt($index)">Move To Done</button>
 						</div>
 					</div>
 			</div>
 
-			<div id="done" droppable="true">
+			<div id="done">
 				<div ng-repeat="completedTask in completedTasks" class="task">
-					{{completedTask.work}}
+					<div class="work">
+						{{completedTask.work}}
+					</div>
+					<div class="button">
+						<button class="myButton" ng-click="deleteCompleted($index)">Delete</button>
+					</div>
 				</div>
 			</div>
 
